@@ -1,13 +1,22 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
+{{ define "home" }}
+    {{ template "header" . }}
+    <div class="row">
+        {{ range $.items }}
+            <div class="card border-0 col-lg-4 col-md-6 col-sm-12 p-1">
+                <a href="/product?id={{ .Id }}" class="btn">
+                    <div class="card-body row">
+                        <img src="{{ .Picture }}" class="col-lg-6 col-sm-12" alt="..."
+                             style="max-height: 100%; min-height: 100%;">
+                        <div class="col-lg-6 col-sm-12 flex-column align-self-end">
+                            <div class="m-2">
+                                {{ .Name }}
+                            </div>
+                            <div class="m-1">${{ .Price }}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {{ end}}
+    </div>
+    {{ template "footer" . }}
+{{ end }}

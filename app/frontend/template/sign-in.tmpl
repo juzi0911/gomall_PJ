@@ -1,5 +1,8 @@
 {{ define "sign-in" }}
     {{ template "header" . }}
+    <head>
+        <title>{{.Title}}</title>
+    </head>
     <div class="container row p-5">
         <div class="col-3"></div>
         <form method="post" class="col-6" action="/auth/login{{ if .next }}?next={{.next}} {{ end}}">

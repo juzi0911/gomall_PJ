@@ -6,7 +6,6 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	auth "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/auth"
-	common "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/common"
 )
 
 type LoginService struct {
@@ -18,7 +17,7 @@ func NewLoginService(Context context.Context, RequestContext *app.RequestContext
 	return &LoginService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *LoginService) Run(req *auth.LoginReq) (resp *common.Empty, err error) {
+func (h *LoginService) Run(req *auth.LoginReq) (redirect string, err error) {
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
@@ -27,7 +26,13 @@ func (h *LoginService) Run(req *auth.LoginReq) (resp *common.Empty, err error) {
 
 	session := sessions.Default(h.RequestContext)
 	session.Set("user_id", 1)
-	session.Save()
-
+	err = session.Save()
+	if err != nil {
+		return "", err
+	}
+	redirect = "/"
+	if req.Next != "" {
+		redirect = req.Next
+	}
 	return
 }

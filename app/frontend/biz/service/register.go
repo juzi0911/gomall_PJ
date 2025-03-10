@@ -2,9 +2,8 @@ package service
 
 import (
 	"context"
-	"github.com/hertz-contrib/sessions"
-
 	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/hertz-contrib/sessions"
 	auth "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/auth"
 	common "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/common"
 )
@@ -27,7 +26,10 @@ func (h *RegisterService) Run(req *auth.RegisterReq) (resp *common.Empty, err er
 
 	session := sessions.Default(h.RequestContext)
 	session.Set("user_id", 1)
-	session.Save()
+	err = session.Save()
+	if err != nil {
+		return nil, err
+	}
 
 	return
 }

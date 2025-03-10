@@ -7,6 +7,7 @@ import (
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
 	"github.com/joho/godotenv"
+	"github.com/juzi0911/gomall_PJ/app/frontend/middleware"
 	"os"
 	"time"
 
@@ -44,11 +45,21 @@ func main() {
 	router.GeneratedRegister(h)
 
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "sign-in", utils.H{"Title": "sign-in"})
+		data := utils.H{
+			"Title": "sign-in",
+			//"Next":  ctx.Request.Header.Get("Referer"),
+			"Next": ctx.Query("next"),
+		}
+		ctx.HTML(consts.StatusOK, "sign-in", data)
 	})
 
 	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
 		ctx.HTML(consts.StatusOK, "sign-up", utils.H{"Title": "sign-up"})
+	})
+
+	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
+		userId := c.Value(middleware.SessionUserId)
+		ctx.HTML(consts.StatusOK, "about", utils.H{"Title": "about", "user_id": userId})
 	})
 
 	h.LoadHTMLGlob("template/*")
@@ -99,4 +110,6 @@ func registerMiddleware(h *server.Hertz) {
 
 	// cores
 	h.Use(cors.Default())
+
+	middleware.Register(h)
 }

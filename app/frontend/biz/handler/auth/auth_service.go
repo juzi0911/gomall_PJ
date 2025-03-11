@@ -2,7 +2,6 @@ package auth
 
 import (
 	"context"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/juzi0911/gomall_PJ/app/frontend/biz/service"
@@ -40,6 +39,7 @@ func Register(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req auth.RegisterReq
 	err = c.BindAndValidate(&req)
+
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return

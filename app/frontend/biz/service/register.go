@@ -6,6 +6,8 @@ import (
 	"github.com/hertz-contrib/sessions"
 	auth "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/auth"
 	common "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/common"
+	"github.com/juzi0911/gomall_PJ/app/frontend/infra/rpc"
+	"github.com/juzi0911/gomall_PJ/rpc_gen/kitex_gen/user"
 )
 
 type RegisterService struct {
@@ -24,8 +26,17 @@ func (h *RegisterService) Run(req *auth.RegisterReq) (resp *common.Empty, err er
 	//}()
 	// todo edit your code
 
+	userResp, err := rpc.UserClient.Register(h.Context, &user.RegisterReq{
+		Email:           req.Email,
+		Password:        req.Password,
+		PasswordConfirm: req.PasswordConfirm,
+	})
+	if err != nil {
+		return nil, err
+	}
+
 	session := sessions.Default(h.RequestContext)
-	session.Set("user_id", 1)
+	session.Set("user_id", userResp.UserId)
 	err = session.Save()
 	if err != nil {
 		return nil, err

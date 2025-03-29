@@ -25,6 +25,7 @@ import (
 	"github.com/hertz-contrib/pprof"
 	"github.com/juzi0911/gomall_PJ/app/frontend/biz/router"
 	"github.com/juzi0911/gomall_PJ/app/frontend/conf"
+	MyUtils "github.com/juzi0911/gomall_PJ/app/frontend/utils"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
@@ -61,7 +62,7 @@ func main() {
 	})
 
 	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
-		userId := c.Value(middleware.SessionUserId)
+		userId := c.Value(MyUtils.SessionUserId)
 		ctx.HTML(consts.StatusOK, "about", utils.H{"Title": "about", "user_id": userId})
 	})
 

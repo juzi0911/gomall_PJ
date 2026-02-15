@@ -3,6 +3,8 @@ package service
 import (
 	"context"
 	product "github.com/juzi0911/gomall_PJ/rpc_gen/kitex_gen/product"
+	"github.com/juzi0911/gomall_PJ/app/product/biz/model"
+	"github.com/juzi0911/gomall_PJ/app/product/biz/dal/mysql"
 )
 
 type ListProductsService struct {
@@ -14,7 +16,21 @@ func NewListProductsService(ctx context.Context) *ListProductsService {
 
 // Run create note info
 func (s *ListProductsService) Run(req *product.ListProductsReq) (resp *product.ListProductsResp, err error) {
-	// Finish your business logic.
+	categoryQuery := model.NewCategoryQuery(s.ctx, mysql.DB)
 
-	return
+	c, err := categoryQuery.GetProductsByCategoryName(req.CategoryName)
+	resp = &product.ListProductsResp{}
+	for _, category := range c {
+		for _, p := range category.Products {
+			resp.Products = append(resp.Products, &product.Product{
+				Id:          uint32(p.ID),
+				Name:        p.Name,
+				Description: p.Description,
+				Picture:     p.Picture,
+				Price:       p.Price,
+			})
+		}
+	}
+
+	return resp, nil
 }

@@ -9,6 +9,7 @@ services:
       - MYSQL_USER=gorm
       - MYSQL_PASSWORD=gorm
       - MYSQL_ROOT_PASSWORD=jyz020911
+      - MYSQL_ROOT_HOST=%
   redis:
     image: 'redis:latest'
     ports:

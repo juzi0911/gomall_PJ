@@ -14,7 +14,7 @@ require (
 	github.com/hertz-contrib/pprof v0.1.2
 	github.com/hertz-contrib/sessions v1.0.3
 	github.com/joho/godotenv v1.5.1
-	github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250311024618-de33bba7ccea
+	github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250329022045-4061a4fce559
 	github.com/kitex-contrib/registry-consul v0.1.0
 	github.com/kr/pretty v0.3.1
 	github.com/redis/go-redis/v9 v9.7.1

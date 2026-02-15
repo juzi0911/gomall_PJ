@@ -2,9 +2,12 @@ package service
 
 import (
 	"context"
-	common "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/common"
 
 	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/common/utils"
+	common "github.com/juzi0911/gomall_PJ/app/frontend/hertz_gen/frontend/common"
+	"github.com/juzi0911/gomall_PJ/app/frontend/infra/rpc"
+	rpcproduct "github.com/juzi0911/gomall_PJ/rpc_gen/kitex_gen/product"
 )
 
 type HomeService struct {
@@ -17,23 +20,13 @@ func NewHomeService(Context context.Context, RequestContext *app.RequestContext)
 }
 
 func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
-	// 创建返回的 map
-	resp := make(map[string]any)
-
-	// 商品列表
-	items := []map[string]any{
-		{"Name": "T-shirt-1", "Price": 100, "Picture": "/static/image/t-shirt-1.jpeg"},
-		{"Name": "T-shirt-2", "Price": 110, "Picture": "/static/image/t-shirt-1.jpeg"},
-		{"Name": "T-shirt-3", "Price": 120, "Picture": "/static/image/t-shirt-2.jpeg"},
-		{"Name": "T-shirt-4", "Price": 130, "Picture": "/static/image/notebook.jpeg"},
-		{"Name": "T-shirt-5", "Price": 140, "Picture": "/static/image/t-shirt-1.jpeg"},
-		{"Name": "T-shirt-6", "Price": 150, "Picture": "/static/image/t-shirt.jpeg"},
+	p, err := rpc.ProductClient.ListProducts(h.Context, &rpcproduct.ListProductsReq{})
+	if err != nil {
+		return nil, err
 	}
 
-	// 赋值
-	resp["Title"] = "Hot Sales"
-	resp["Items"] = items
-
-	// 返回 map
-	return resp, nil
+	return utils.H{
+		"title": "Hot Sale",
+		"items": p.Products,
+	}, nil
 }

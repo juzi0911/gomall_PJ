@@ -3,6 +3,8 @@ export ROOT_MOD=github.com/juzi0911/gomall_PJ
 .PHONY: gen-frontend
 gen-frontend:
 	@cd app/frontend && cwgo server --server_name frontend --type HTTP  --idl ../../idl/frontend/auth_page.proto -module ${ROOT_MOD}/app/frontend -I ../../idl
+	@cd app/frontend && cwgo server --server_name frontend --type HTTP  --idl ../../idl/frontend/product_page.proto -module ${ROOT_MOD}/app/frontend -I ../../idl
+	@cd app/frontend && cwgo server --server_name frontend --type HTTP  --idl ../../idl/frontend/category_page.proto -module ${ROOT_MOD}/app/frontend -I ../../idl
 	@cd app/frontend && cwgo server --server_name frontend --type HTTP  --idl ../../idl/frontend/home.proto -module ${ROOT_MOD}/app/frontend -I ../../idl
 
 .PHONY: gen-user

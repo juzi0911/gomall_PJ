@@ -2,9 +2,10 @@ package service
 
 import (
 	"context"
-	product "github.com/juzi0911/gomall_PJ/rpc_gen/kitex_gen/product"
-	"github.com/juzi0911/gomall_PJ/app/product/biz/model"
+
 	"github.com/juzi0911/gomall_PJ/app/product/biz/dal/mysql"
+	"github.com/juzi0911/gomall_PJ/app/product/biz/model"
+	product "github.com/juzi0911/gomall_PJ/rpc_gen/kitex_gen/product"
 )
 
 type ListProductsService struct {

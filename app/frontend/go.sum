@@ -206,8 +206,8 @@ github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnr
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
 github.com/jtolds/gls v4.20.0+incompatible h1:xdiiI2gbIgH/gLH7ADydsJ1uDOEzR8yvV7C0MuV77Wo=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
-github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250311024618-de33bba7ccea h1:an/jC35jaoyxJJ8N++AbswuX3bSjQqLwcx3QaDMUz/4=
-github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250311024618-de33bba7ccea/go.mod h1:25N4NAirqku1BOuoHEERTfHkB8Mvfu0y0MAGaXpjujw=
+github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250329022045-4061a4fce559 h1:CsscCAZFrsHVEarrulZpDi5ZHZLUHomeyWaB+rV94rg=
+github.com/juzi0911/gomall_PJ/rpc_gen v0.0.0-20250329022045-4061a4fce559/go.mod h1:25N4NAirqku1BOuoHEERTfHkB8Mvfu0y0MAGaXpjujw=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/kitex-contrib/registry-consul v0.1.0 h1:G8re9ICA1kNxD/QmjwCt1HMiISwDzfnsaDeSBuIXDQ8=
 github.com/kitex-contrib/registry-consul v0.1.0/go.mod h1:h20aRkcmv0lip1nHDRWkLGzj8DNq47XpRWgsnLwLpbs=
